@@ -1,10 +1,16 @@
-use std::io::{stdin, Result, Write};
+use std::{
+    fs::OpenOptions,
+    io::{stdin, Result, Write},
+    path::Path,
+};
 mod flock;
 use flock::{file_lock, file_unlock};
 
 fn main() -> Result<()> {
     println!("Waiting to lock file...");
-    let mut file = file_lock("tmp/example.lock")?;
+    let path = Path::new("tmp/example.lock");
+    let mut file = OpenOptions::new().write(true).create(true).open(&path)?;
+    file_lock(&file)?;
 
     println!("File: {:?}", file);
     writeln!(file, "This file is locked!")?;
@@ -12,7 +18,7 @@ fn main() -> Result<()> {
     println!("File is locked. Press Enter to unlock...");
     let _ = stdin().read_line(&mut String::new());
 
-    file_unlock(file)?;
+    file_unlock(&file)?;
     println!("File is unlocked.");
 
     Ok(())

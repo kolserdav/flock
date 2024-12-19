@@ -9,7 +9,9 @@ name = "flock_rs"
 
 [dependencies]
 napi = { version = "2", features = ["napi1"] }
+#napi =  { path = "../napi-rs/crates/napi", features = ["napi1"] }
 napi-derive = "2"
+#napi-derive = { version = "3.0.0-alpha.22" }
 fs4 = { version = "0.12", features = ["sync"] }
 
 [build-dependencies]
