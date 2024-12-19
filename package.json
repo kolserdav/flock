@@ -1,0 +1,20 @@
+{
+  "name": "flock-rs",
+  "version": "1.0.0",
+  "main": "index.cjs",
+  "napi": {
+    "name": "flock-rs"
+  },
+  "scripts": {
+    "build": "napi build --release",
+    "build:debug": "napi build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.4",
+    "@types/node": "^22.10.2"
+  }
+}
