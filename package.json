@@ -1,6 +1,6 @@
 {
   "name": "flock-rs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.cjs",
   "type": "commonjs",
   "repository": "https://github.com/kolserdav/flock.git",
@@ -21,5 +21,18 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2"
+  },
+  "fhead": {
+    "root": "src",
+    "repository": "https://github.com/kolserdav/flock.git",
+    "patterns": [
+      ".rs"
+    ],
+    "name": "Sergey Kolmiller",
+    "email": "kolserdav@conhos.ru",
+    "license": "MIT",
+    "licenseText": "See LICENSE file",
+    "copyright": "kolserdav, All rights reserved (c)",
+    "renewAll": false
   }
 }

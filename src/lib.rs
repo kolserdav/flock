@@ -1,3 +1,13 @@
+/******************************************************************************************
+ * Repository: https://github.com/kolserdav/flock.git
+ * File name: lib.rs
+ * Author: Sergey Kolmiller
+ * Email: <kolserdav@conhos.ru>
+ * License: MIT
+ * License text: See LICENSE file
+ * Copyright: kolserdav, All rights reserved (c)
+ * Create Date: Fri Dec 20 2024 17:17:18 GMT+0700 (Krasnoyarsk Standard Time)
+ ******************************************************************************************/
 use napi::bindgen_prelude::Result;
 use napi_derive::napi;
 use std::{
