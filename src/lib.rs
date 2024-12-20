@@ -22,7 +22,7 @@ impl Flock {
     }
 
     #[napi]
-    pub fn flock(&self) -> Result<()> {
+    pub fn lock(&self) -> Result<()> {
         file_lock(&self.file)?;
         return Ok(());
     }

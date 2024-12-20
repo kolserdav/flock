@@ -5,6 +5,6 @@
 
 export declare class Flock {
   constructor(path: string)
-  flock(): void
+  lock(): void
   unlock(): void
 }
