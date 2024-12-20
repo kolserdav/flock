@@ -1,17 +1,16 @@
 {
   "name": "flock-rs",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.cjs",
-  "napi": {
-    "name": "flock-rs"
-  },
+  "type": "commonjs",
   "scripts": {
     "build": "napi build --release",
-    "build:debug": "napi build"
+    "build:debug": "napi build",
+    "postinstall": "npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "kolserdav",
+  "license": "MIT",
   "description": "",
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",

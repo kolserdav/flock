@@ -1,0 +1,6 @@
+flock-rs.node
+tmp
+test
+.vscode
+node_modules
+README.md
