@@ -15,3 +15,8 @@ fs4 = { version = "0.12", features = ["sync"] }
 
 [build-dependencies]
 napi-build = "2"
+
+[workspace]
+exclude = [
+    "node_modules/flock-rs",
+]
