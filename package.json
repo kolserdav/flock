@@ -1,8 +1,9 @@
 {
   "name": "flock-rs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.cjs",
   "type": "commonjs",
+  "repository": "https://github.com/kolserdav/flock.git",
   "napi": {
     "name": "flock-rs"
   },
@@ -11,7 +12,7 @@
     "build:debug": "napi build",
     "postinstall": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["flock", "lockfile"],
   "author": "kolserdav",
   "license": "MIT",
   "description": "",
