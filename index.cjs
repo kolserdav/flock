@@ -1,3 +1,5 @@
-const { flock, unlock } = require("./flock-rs.node");
+const { Flock } = require("./flock-rs.node");
 
-module.exports = { flock, unlock };
+console.log(12, new Flock("tmp/das1"));
+
+module.exports = Flock;

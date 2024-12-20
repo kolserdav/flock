@@ -12,7 +12,7 @@ fn main() -> Result<()> {
     let mut file = OpenOptions::new().write(true).create(true).open(&path)?;
     file_lock(&file)?;
 
-    println!("File: {:?}", file);
+    println!("File descriptor: {:?}", file);
     writeln!(file, "This file is locked!")?;
 
     println!("File is locked. Press Enter to unlock...");

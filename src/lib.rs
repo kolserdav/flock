@@ -9,20 +9,16 @@ use flock::{file_lock, file_unlock};
 
 #[napi]
 pub struct Flock {
-    pub file: File, // FIXME required for `std::fs::File` to implement `ToNapiValue`
+    file: File,
 }
 
 #[napi]
 impl Flock {
     #[napi(constructor)]
-    pub fn new(path: String) -> Self {
+    pub fn new(path: String) -> Result<Self> {
         let path = Path::new(path.as_str());
-        let file = OpenOptions::new()
-            .write(true)
-            .create(true)
-            .open(&path)
-            .unwrap();
-        Flock { file }
+        let file = OpenOptions::new().write(true).create(true).open(&path)?;
+        Ok(Flock { file })
     }
 
     #[napi]
