@@ -10,7 +10,8 @@
   "scripts": {
     "build": "napi build --release",
     "build:debug": "napi build",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "test": "node test/index.js"
   },
   "keywords": ["flock", "lockfile"],
   "author": "kolserdav",
@@ -28,7 +29,7 @@
     "patterns": [
       ".rs"
     ],
-    "name": "Sergey Kolmiller",
+    "name": "Sergei Kolmiller",
     "email": "kolserdav@conhos.ru",
     "license": "MIT",
     "licenseText": "See LICENSE file",

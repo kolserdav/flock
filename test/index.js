@@ -7,7 +7,7 @@ function clearLine() {
 }
 
 (async () => {
-  const filePath = path.resolve("tmp/das");
+  const filePath = path.resolve(process.cwd(), "tmp/example.lock");
   const flock = new Flock(filePath);
 
   // Show async process

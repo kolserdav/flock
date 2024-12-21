@@ -11,7 +11,7 @@ name = "flock_rs"
 napi = { version = "3.0.0-alpha.24", default-features = false, features = ["async"] }
 #napi =  { path = "../napi-rs/crates/napi", features = ["napi1"] }
 napi-derive = { version = "3.0.0-alpha.22" }
-async-std = "1.13.0"
+async-std = { version = "1.13.0", features = ["attributes"] }
 fs4 = { version = "0.12", features = ["async-std"] }
 
 [build-dependencies]
