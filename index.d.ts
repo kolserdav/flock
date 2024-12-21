@@ -5,6 +5,6 @@
 
 export declare class Flock {
   constructor(path: string)
-  lock(): void
-  unlock(): void
+  lock(): Promise<void>
+  unlock(): Promise<void>
 }

@@ -21,8 +21,10 @@ const { Flock } = require("flock-rs");
 const filePath = path.resolve("/tmp/file.lock");
 const flock = new Flock(filePath);
 
-flock.lock();
-console.log("File locked", filePath);
-flock.unlock();
-console.log("File unlocked", filePath);
+(async () => {
+  await flock.lock();
+  console.log("File locked", filePath);
+  await flock.unlock();
+  console.log("File unlocked", filePath);
+})();
 ```

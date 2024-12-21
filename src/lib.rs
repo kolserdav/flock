@@ -32,14 +32,16 @@ impl Flock {
     }
 
     #[napi]
-    pub fn lock(&self) -> Result<()> {
-        file_lock(&self.file)?;
-        return Ok(());
+    pub async fn lock(&self) -> Result<()> {
+        let file = self.file.try_clone()?;
+        file_lock(&file).await?;
+        Ok(())
     }
 
     #[napi]
-    pub fn unlock(&self) -> Result<()> {
-        file_unlock(&self.file)?;
+    pub async fn unlock(&self) -> Result<()> {
+        let file = self.file.try_clone()?;
+        file_unlock(&file).await?;
         Ok(())
     }
 }
