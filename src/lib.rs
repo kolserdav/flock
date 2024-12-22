@@ -12,7 +12,7 @@ use napi::bindgen_prelude::Result;
 use napi_derive::napi;
 use std::fs::File;
 mod flock;
-use flock::{file_lock, file_open, file_unlock};
+use flock::{file_lock, file_open, file_unlock, is_file_locked};
 
 #[napi]
 pub struct Flock {
@@ -38,6 +38,13 @@ impl Flock {
     pub async fn unlock(&self) -> Result<()> {
         let file = self.file.try_clone()?;
         file_unlock(&file).await?;
+        Ok(())
+    }
+
+    #[napi]
+    pub async fn is_locked(&self) -> Result<()> {
+        let file = self.file.try_clone()?;
+        is_file_locked(&file).await?;
         Ok(())
     }
 }

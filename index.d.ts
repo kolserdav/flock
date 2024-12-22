@@ -7,4 +7,5 @@ export declare class Flock {
   constructor(path: string)
   lock(): Promise<void>
   unlock(): Promise<void>
+  isLocked(): Promise<void>
 }

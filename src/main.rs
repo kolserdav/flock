@@ -14,7 +14,7 @@ use std::{
 };
 mod flock;
 use async_std::task::{self, sleep};
-use flock::{file_lock, file_open, file_unlock};
+use flock::{file_lock, file_open, file_unlock, is_file_locked};
 
 async fn test() -> Result<()> {
     task::spawn(async move {
@@ -24,7 +24,11 @@ async fn test() -> Result<()> {
 
     let file_name = "tmp/example.lock";
     let file = file_open(&file_name)?;
-    println!("Waiting to lock file: {}", file_name);
+    println!(
+        "Waiting to lock file: {}, File is locked: {}",
+        file_name,
+        is_file_locked(&file).await?
+    );
 
     file_lock(&file).await?;
 

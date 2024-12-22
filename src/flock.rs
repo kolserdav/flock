@@ -12,7 +12,7 @@ use async_std::path::Path;
 use fs4::fs_std::FileExt;
 use std::{
     fs::{File, OpenOptions},
-    io::Result,
+    io::{ErrorKind, Result},
 };
 
 pub async fn file_lock(file: &File) -> Result<()> {
@@ -23,6 +23,22 @@ pub async fn file_lock(file: &File) -> Result<()> {
 pub async fn file_unlock(file: &File) -> Result<()> {
     file.unlock()?;
     Ok(())
+}
+
+pub async fn is_file_locked(file: &File) -> Result<bool> {
+    match file.try_lock_exclusive() {
+        Ok(_) => {
+            file.unlock()?;
+            Ok(false)
+        }
+        Err(e) => {
+            if e.kind() == ErrorKind::WouldBlock {
+                Ok(true)
+            } else {
+                Err(e)
+            }
+        }
+    }
 }
 
 pub fn file_open(path: &str) -> Result<File> {
