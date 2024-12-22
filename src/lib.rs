@@ -42,9 +42,9 @@ impl Flock {
     }
 
     #[napi]
-    pub async fn is_locked(&self) -> Result<()> {
+    pub async fn is_locked(&self) -> Result<bool> {
         let file = self.file.try_clone()?;
-        is_file_locked(&file).await?;
-        Ok(())
+        let res = is_file_locked(&file).await?;
+        Ok(res)
     }
 }
