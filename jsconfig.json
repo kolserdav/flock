@@ -7,7 +7,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "checkJs": true,
-    "allowJs": true
+    "allowJs": true,
+    "emitDeclarationOnly": true,
+    "declaration": true
   },
   "include": ["*.js", "*.d.ts", "test/*.js"]
 }

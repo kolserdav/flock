@@ -1,4 +1,4 @@
-declare module "./flock-rs.node" {
+declare module "./flock-rs" {
   export class Flock {
       constructor(path: string);
       lock(): Promise<void>;
