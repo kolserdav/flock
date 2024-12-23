@@ -1,3 +1,3 @@
-const { Flock } = require("./flock-rs");
+const { Flock } = require("./flock-rs.node");
 
 module.exports = { Flock };
