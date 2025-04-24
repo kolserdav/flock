@@ -8,9 +8,9 @@ crate-type = ["cdylib"]
 name = "flock_rs"
 
 [dependencies]
-napi = { version = "3.0.0-alpha.24", default-features = false, features = ["async"] }
+napi = { version = "3.0.0-alpha.29", default-features = false, features = ["async"] }
 #napi =  { path = "../napi-rs/crates/napi", features = ["napi1"] }
-napi-derive = { version = "3.0.0-alpha.22" }
+napi-derive = { version = "3.0.0-alpha.29" }
 async-std = { version = "1.13.0", features = ["attributes"] }
 fs4 = { version = "0.12", features = ["async-std"] }
 
