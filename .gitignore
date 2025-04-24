@@ -3,3 +3,4 @@ target
 tmp
 neon
 flock-rs.node
+cross
