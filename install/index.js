@@ -41,6 +41,58 @@ async function getArchitecture({ osFamily }) {
   return null;
 }
 
+/**
+ *
+ * @param {string} url
+ * @param {string} dest
+ */
+async function downloadFile(url, dest) {
+  const file = fs.createWriteStream(dest);
+
+  return new Promise((resolve) => {
+    https
+      .get(url, (response) => {
+        if (response.statusCode === 302 || response.statusCode === 301) {
+          const redirectUrl = response.headers.location;
+          if (!redirectUrl) {
+            console.error('Redirect url is', redirectUrl);
+            resolve(1);
+            return;
+          }
+          console.log(`Redirecting to: ${redirectUrl}`);
+          downloadFile(redirectUrl, dest).then((d) => {
+            resolve(d);
+          });
+          return;
+        }
+
+        if (response.statusCode !== 200) {
+          console.error(`Failed to get '${url}' (${response.statusCode})`);
+          fs.unlink(dest, () => {});
+          resolve(1);
+          return;
+        }
+
+        response.pipe(file);
+
+        file.on('finish', () => {
+          file.close();
+          console.log(`Downloaded ${dest}`);
+          resolve(0);
+        });
+
+        file.on('error', (err) => {
+          fs.unlink(dest, () => {});
+          console.error(`Error writing to file: ${err.message}`);
+          resolve(1);
+        });
+      })
+      .on('error', (err) => {
+        console.error(`Error downloading file: ${err.message}`);
+      });
+  });
+}
+
 (async () => {
   const osFamily = await family();
   const architecture = await getArchitecture({ osFamily });
@@ -74,19 +126,9 @@ async function getArchitecture({ osFamily }) {
       fs.unlinkSync(filePath);
     }
 
-    const file = fs.createWriteStream(filePath);
-    https
-      .get(fileUrl, (response) => {
-        response.pipe(file);
-        file.on('finish', () => {
-          file.close();
-          console.log(`Downloaded ${filePath}`);
-        });
-      })
-      .on('error', (err) => {
-        fs.unlink(filePath, () => {});
-        console.error(`Error downloading file: ${err.message}`);
-      });
+    const code = await downloadFile(fileUrl, filePath);
+    console.log('Download end with code', code);
+    process.exit(code);
   } else {
     console.info('Binary file not found, try to build', { name, arch, platform, osFamily });
     const build = spawn('npm', ['run', 'build']);
