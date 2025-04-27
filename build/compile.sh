@@ -33,7 +33,7 @@ for platform in "${platforms_array[@]}"; do
             ;;
     esac
 
-    mv -f "$FILE_NAME" "$RELEASE_DIR"
+    mv -f "$FILE_NAME" "$RELEASE_DIR/$PACKAGE_NAME.$platform.node"
 done
 
 echo "flock-rs compilled"

@@ -9,7 +9,8 @@
     "checkJs": true,
     "allowJs": true,
     "emitDeclarationOnly": true,
-    "declaration": true
+    "declaration": true,
+    "resolveJsonModule": true
   },
   "include": ["*.js", "*.d.ts", "test/*.js", "install/*.js"]
 }
