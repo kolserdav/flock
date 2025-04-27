@@ -30,7 +30,7 @@ async function getArchitecture({ osFamily }) {
 
     if (arch === 'arm64') {
       return 'aarch64-unknown-linux-musl';
-    } else if (arch === 'amd64') {
+    } else if (arch === 'x64') {
       return 'x86_64-unknown-linux-musl';
     }
   }
