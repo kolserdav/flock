@@ -4,11 +4,26 @@
   "main": "index.js",
   "repository": "https://github.com/kolserdav/flock.git",
   "napi": {
-    "name": "flock-rs"
+    "name": "flock-rs",
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "i686-pc-windows-msvc",
+        "i686-unknown-linux-gnu",
+        "x86_64-apple-darwin",
+        "x86_64-pc-windows-gnu",
+        "x86_64-pc-windows-msvc",
+        "x86_64-unknown-linux-gnu"
+      ]
+    }
   },
   "scripts": {
-    "build": "napi build --release",
+    "help": "napi build -h",
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release",
     "build:debug": "napi build",
+    "install": "node install/index.js",
     "postinstall": "npm run build",
     "test": "node test/index.js"
   },
