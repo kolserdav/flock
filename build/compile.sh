@@ -21,6 +21,9 @@ for platform in "${platforms_array[@]}"; do
     napi build --platform --release --target "$platform"
 
     case "$platform" in
+        "x86_64-unknown-linux-gnu")
+            FILE_NAME="$PACKAGE_NAME.linux-x64-gnu.node"
+            ;;
         "x86_64-unknown-linux-musl")
             FILE_NAME="$PACKAGE_NAME.linux-x64-musl.node"
             ;;

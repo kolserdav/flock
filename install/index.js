@@ -13,6 +13,7 @@ const DOWNLOAD_URL = `${repository.replace(/\.git$/, '')}/releases/download/${ve
 const versions = {
   'aarch64-unknown-linux-musl': 'ARM64 Linux with musl 1.2.3',
   'x86_64-unknown-linux-musl': '64-bit Linux with musl 1.2.3',
+  'x86_64-unknown-linux-gnu': '64-bit Linux (kernel 3.2+, glibc 2.17+)',
 };
 
 const arch = os.arch();
@@ -25,6 +26,9 @@ const platform = os.platform();
 async function getArchitecture({ osFamily }) {
   if (platform === 'linux') {
     if (osFamily !== MUSL) {
+      if (arch === 'x64') {
+        return 'x86_64-unknown-linux-gnu';
+      }
       return null;
     }
 

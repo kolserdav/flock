@@ -8,11 +8,11 @@
   },
   "scripts": {
     "help": "napi build -h",
-    "artifacts": "napi artifacts",
+    "compile": "./build/compile.sh",
     "build": "napi build --release",
     "build:debug": "napi build",
     "install": "node install/index.js",
-    " ": "node install/index.js",
+    "postinstall": "node install/index.js",
     "test": "node test/index.js"
   },
   "keywords": [
