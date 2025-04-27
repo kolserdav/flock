@@ -45,8 +45,26 @@ async function getArchitecture({ osFamily }) {
   const osFamily = await family();
   const architecture = await getArchitecture({ osFamily });
 
-  if (architecture && versions[architecture]) {
-    const filePath = path.join(__dirname, '..', `${name}.${architecture}.node`);
+  /**
+   * @type {string | null}
+   */
+  let fileArch = null;
+  switch (architecture) {
+    case 'aarch64-unknown-linux-musl':
+      fileArch = 'linux-arm64-musl';
+      break;
+    case 'x86_64-unknown-linux-gnu':
+      fileArch = 'linux-x64-gnu';
+      break;
+    case 'x86_64-unknown-linux-musl':
+      fileArch = 'linux-x64-musl';
+      break;
+    default:
+      console.warn('Default case of arch', { fileArch, architecture });
+  }
+
+  if (fileArch && architecture && versions[architecture]) {
+    const filePath = path.join(__dirname, '..', `${name}.${fileArch}.node`);
 
     const fileUrl = `${DOWNLOAD_URL}.${architecture}.node`;
     console.log(`Binary exists '${name}'.Downloading ${fileUrl} to ${filePath}`);
