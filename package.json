@@ -1,6 +1,6 @@
 {
   "name": "flock-rs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "repository": "https://github.com/kolserdav/flock.git",
   "napi": {
@@ -12,7 +12,7 @@
     "build": "napi build --release",
     "build:debug": "napi build",
     "install": "node install/index.js",
-    "postinstall": "node install/index.js",
+    " ": "node install/index.js",
     "test": "node test/index.js"
   },
   "keywords": [

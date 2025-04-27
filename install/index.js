@@ -15,12 +15,16 @@ const versions = {
   'x86_64-unknown-linux-musl': '64-bit Linux with musl 1.2.3',
 };
 
-async function getArchitecture() {
-  const arch = os.arch();
-  const platform = os.platform();
+const arch = os.arch();
+const platform = os.platform();
 
+/**
+ * @param {{osFamily: string | null}} param0
+ * @returns
+ */
+async function getArchitecture({ osFamily }) {
   if (platform === 'linux') {
-    if ((await family()) !== MUSL) {
+    if (osFamily !== MUSL) {
       return null;
     }
 
@@ -34,7 +38,8 @@ async function getArchitecture() {
 }
 
 (async () => {
-  const architecture = await getArchitecture();
+  const osFamily = await family();
+  const architecture = await getArchitecture({ osFamily });
 
   if (architecture && versions[architecture]) {
     const filePath = path.join(__dirname, '..', 'flock-rs.node');
@@ -60,7 +65,7 @@ async function getArchitecture() {
         console.error(`Error downloading file: ${err.message}`);
       });
   } else {
-    console.info('Binary file not found, try to build', name);
+    console.info('Binary file not found, try to build', { name, arch, platform, osFamily });
     const build = spawn('npm', ['run', 'build']);
 
     build.on('error', (err) => {
