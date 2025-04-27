@@ -27,12 +27,16 @@
     "postinstall": "npm run build",
     "test": "node test/index.js"
   },
-  "keywords": ["flock", "lockfile"],
+  "keywords": [
+    "flock",
+    "lockfile"
+  ],
   "author": "kolserdav",
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@napi-rs/cli": "^2.18.4"
+    "@napi-rs/cli": "^2.18.4",
+    "detect-libc": "^2.0.4"
   },
   "devDependencies": {
     "@types/node": "^22.10.2"
