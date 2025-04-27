@@ -2,6 +2,6 @@ node_modules
 target
 tmp
 neon
-flock-rs.node
+flock-rs.*.node
 cross
 release

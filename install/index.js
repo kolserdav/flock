@@ -46,7 +46,7 @@ async function getArchitecture({ osFamily }) {
   const architecture = await getArchitecture({ osFamily });
 
   if (architecture && versions[architecture]) {
-    const filePath = path.join(__dirname, '..', 'flock-rs.node');
+    const filePath = path.join(__dirname, '..', `${name}.${architecture}.node`);
 
     const fileUrl = `${DOWNLOAD_URL}.${architecture}.node`;
     console.log(`Binary exists '${name}'.Downloading ${fileUrl} to ${filePath}`);
