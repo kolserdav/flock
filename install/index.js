@@ -8,7 +8,7 @@ const { spawn } = require('child_process');
 
 const { name, version, repository } = pack;
 
-const DOWNLOAD_URL = `${repository.replace(/\.git$/, '')}/releases/download/${version}/${name}`;
+const DOWNLOAD_URL = `${repository.replace(/\.git$/, '')}/releases/download/${version}`;
 
 const versions = {
   'aarch64-unknown-linux-musl': 'ARM64 Linux with musl 1.2.3',
@@ -64,9 +64,10 @@ async function getArchitecture({ osFamily }) {
   }
 
   if (fileArch && architecture && versions[architecture]) {
-    const filePath = path.join(__dirname, '..', `${name}.${fileArch}.node`);
+    const filename = `${name}.${fileArch}.node`;
+    const filePath = path.join(__dirname, '..', filename);
 
-    const fileUrl = `${DOWNLOAD_URL}.${architecture}.node`;
+    const fileUrl = `${DOWNLOAD_URL}/${filename}`;
     console.log(`Binary exists '${name}'.Downloading ${fileUrl} to ${filePath}`);
 
     if (fs.existsSync(filePath)) {
